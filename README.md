@@ -12,7 +12,6 @@ access control, search, and caching.
 
 ### Requirements: 
 1. Environment: 
-- The candidate is required to use Laravel for this test.
 - The solution should use a relational database (e.g., MySQL, PostgreSQL, 
 SQLite).
 
@@ -53,20 +52,117 @@ Books:
 - POST /books/{id}/return: Return a borrowed book (Member only). 
 
 Authors: 
-l GET /authors: Retrieve a list of all authors. 
-l GET /authors/{id}: Retrieve details of a specific author by ID. 
-l POST /authors: Create a new author (Admin/Librarian only). 
-l PUT /authors/{id}: Update an existing author by ID (Admin/Librarian only). 
-l DELETE /authors/{id}: Delete an author by ID (Admin only). 
+- GET /authors: Retrieve a list of all authors. 
+- GET /authors/{id}: Retrieve details of a specific author by ID. 
+- POST /authors: Create a new author (Admin/Librarian only).
+- PUT /authors/{id}: Update an existing author by ID (Admin/Librarian only). 
+- DELETE /authors/{id}: Delete an author by ID (Admin only). 
 
 Users: 
-l GET /users: Retrieve a list of all users (Admin only). 
-l GET /users/{id}: Retrieve details of a specific user by ID (Admin only). 
-l POST /users: Register a new user. 
-l PUT /users/{id}: Update user details (Admin only or self). 
-l DELETE /users/{id}: Delete a user by ID (Admin only). 
-l POST /login: Authenticate a user and return a sanctum token. 
+- GET /users: Retrieve a list of all users (Admin only). 
+- GET /users/{id}: Retrieve details of a specific user by ID (Admin only). 
+- POST /users: Register a new user. 
+- PUT /users/{id}: Update user details (Admin only or self). 
+- DELETE /users/{id}: Delete a user by ID (Admin only). 
+- POST /login: Authenticate a user and return a sanctum token. 
 BorrowRecords: 
-l GET /borrow-records: Retrieve all borrow records (Admin/Librarian only). 
-l GET /borrow-records/{id}: Retrieve details of a specific borrow record by 
+- GET /borrow-records: Retrieve all borrow records (Admin/Librarian only). 
+- GET /borrow-records/{id}: Retrieve details of a specific borrow record by 
 ID (Admin/Librarian only).
+
+### Additional Requirements:
+1. Implement role-based access control (RBAC): 
+- Admin: Full access to all resources. 
+- Librarian: Can manage books and authors, view borrow records, but 
+cannot manage users. 
+- Member: Can view books/authors, borrow and return books, and update 
+their profile. 
+3. Implement search functionality for books by title, author, or ISBN. 
+4. Implement pagination for listing books, authors, and borrow records. 
+5. Implement input validation for all endpoints. 
+6. Implement error handling with appropriate status codes and error 
+messages. 
+7. Include feature tests for as many API endpoints as possible.
+8. Implement rate limiting for API requests to prevent abuse. 
+
+Additional Notes: 
+Feel free to use any libraries or tools you're comfortable with.
+
+
+`Task 2:  News Aggregator API`
+
+### Objective: 
+The challenge is to 
+build a RESTful API for a news aggregator service that pulls articles from various 
+sources and provides endpoints for a frontend application to consume.
+
+### Requirements:
+ 1. User Authentication:
+   - Implement user registration and login endpoints using jwt/Sanctum(for laravel)
+   - API token authentication.
+   - Include endpoints for user logout and password reset.
+ 2. Article Management:
+   - Create endpoints to fetch articles with support for pagination.
+   - Implement search functionality to allow filtering      articles by keyword, date, 
+    category, and source.
+   - Develop an endpoint for retrieving a single article's details.
+ 3. User Preferences:
+   - Create endpoints to allow users to set and retrieve their preferred news sources, categories, and authors.
+   - Implement an endpoint to fetch a personalized news feed based on user preferences.
+ 4. Data Aggregation:
+   - Develop a system to regularly fetch and store articles from at least 3 different news APIs (see the list of data sources below).
+   - Implement efficient data storage and indexing for optimized search and retrieval.
+ 5. API Documentation:
+   - Provide comprehensive API documentation using tools like 
+    Swagger/OpenAPI
+
+ ### Data Sources:
+ Choose at least 3 from the following list:
+ 1. NewsAPI
+ 2. 0PenNews
+ 3. NewsCred
+ 4. The Guardian
+ 5. New York Times
+ 6. BBC News
+
+`Please note that some of these APIs might require registration and authentication 
+keys to access the data`
+
+
+Challenge Guidelines
+ 1. Backend Project:
+ - Develop a RESTful API that fulfills all the above 
+requirements.
+ Implement proper error handling and validation for all endpoints.
+ 2. Database Design:
+  - Design an efficient database schema to store articles, user data, and 
+preferences.
+  - Use migrations and seeders for database setup
+
+ 3. Data Aggregation:
+  - Implement Laravel scheduled commands to regularly fetch and update 
+articles from the chosen news APIs.
+ - Store the fetched data locally in the database.
+  - Ensure that all data filtering and searching operations are performed on 
+the local data, not on live API data
+
+ 4. Best Practices:
+ - Adhere to your choice of framework best practices and coding standards.
+  - Incorporate software development principles such as DRY Don't Repeat 
+ - Yourself), KISS Keep It Simple, Stupid), and SOLID.
+ - Write clean, maintainable, and well-documented code
+
+ 5. Testing:
+ - Write unit and feature tests for your API endpoints and core functionalities.
+ - Aim for good test coverage of your codebase
+
+ 6. Performance:
+ - Implement caching strategies where appropriate to optimize API 
+  performance.
+ - Consider implementing rate limiting for API endpoints.
+
+  Security:
+  - Ensure proper security measures are in place, including protection against 
+common vulnerabilities (e.g., SQL injection, XSS).
+ - Implement proper authentication and authorization checks for all protected 
+routes
