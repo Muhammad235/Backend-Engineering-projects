@@ -12,46 +12,45 @@ access control, search, and caching.
 
 ### Requirements: 
 1. Environment: 
-l The candidate is required to use Laravel for this test. 
-l The solution should use a relational database (e.g., MySQL, PostgreSQL, 
+- The candidate is required to use Laravel for this test.
+- The solution should use a relational database (e.g., MySQL, PostgreSQL, 
 SQLite).
 
 2. Entities: 
 Book: 
-l id: Integer, primary key 
-l title: String, required 
-l isbn: String, required, unique 
-l published_date: Date 
-l author_id: Foreign key to Author 
-l status: Enum [Available, Borrowed], required 
+- id: Integer, primary key 
+- isbn: String, required, unique 
+- published_date: Date 
+- author_id: Foreign key to Author 
+- status: Enum [Available, Borrowed], required 
 Author: 
-l id: Integer, primary key 
-l name: String, required 
-l bio: Text, optional 
-l birthdate: Date, optional 
+- id: Integer, primary key 
+- name: String, required 
+- bio: Text, optional 
+- birthdate: Date, optional 
 User: 
-l id: Integer, primary key 
-l name: String, required 
-l email: String, required, unique 
+- id: Integer, primary key 
+- name: String, required 
+- email: String, required, unique 
 l password: String, required 
 l role: Enum [Admin, Librarian, Member], required 
 BorrowRecord:
 id: Integer, primary key 
-l user_id: Foreign key to User 
-l book_id: Foreign key to Book 
-l borrowed_at: DateTime, required 
-l due_at: DateTime, required 
-l returned_at: DateTime, optional
+- user_id: Foreign key to User 
+- book_id: Foreign key to Book 
+- borrowed_at: DateTime, required 
+- due_at: DateTime, required 
+- returned_at: DateTime, optional
 
 ### API Endpoints: 
 Books: 
-l GET /books: Retrieve a list of all books. 
-l GET /books/{id}: Retrieve details of a specific book by ID. 
-l POST /books: Create a new book (Admin/Librarian only). 
-l PUT /books/{id}: Update an existing book by ID (Admin/Librarian only). 
-l DELETE /books/{id}: Delete a book by ID (Admin only). 
-l POST /books/{id}/borrow: Borrow a book (Member only, if available). 
-l POST /books/{id}/return: Return a borrowed book (Member only). 
+- GET /books: Retrieve a list of all books. 
+- GET /books/{id}: Retrieve details of a specific book by ID. 
+- POST /books: Create a new book (Admin/Librarian only). 
+- PUT /books/{id}: Update an existing book by ID (Admin/Librarian only). 
+- DELETE /books/{id}: Delete a book by ID (Admin only). 
+- POST /books/{id}/borrow: Borrow a book (Member only, if available). 
+- POST /books/{id}/return: Return a borrowed book (Member only). 
 
 Authors: 
 l GET /authors: Retrieve a list of all authors. 
