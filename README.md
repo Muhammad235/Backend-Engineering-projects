@@ -64,7 +64,7 @@ Users:
 - POST /users: Register a new user. 
 - PUT /users/{id}: Update user details (Admin only or self). 
 - DELETE /users/{id}: Delete a user by ID (Admin only). 
-- POST /login: Authenticate a user and return a sanctum token. 
+- POST /login: Authenticate a user and return a jwt/sanctum token. 
 BorrowRecords: 
 - GET /borrow-records: Retrieve all borrow records (Admin/Librarian only). 
 - GET /borrow-records/{id}: Retrieve details of a specific borrow record by 
@@ -161,8 +161,99 @@ the local data, not on live API data
   performance.
  - Consider implementing rate limiting for API endpoints.
 
-  Security:
+  7. Security:
   - Ensure proper security measures are in place, including protection against 
 common vulnerabilities (e.g., SQL injection, XSS).
  - Implement proper authentication and authorization checks for all protected 
 routes
+
+
+`Task 3: Automated Email Noti cation System withCronJobs`
+
+### Objective:
+ Build a system that allows users to schedule automated email
+ notifications to be sent at a future date using cron jobs.
+ Thesystem will:
+ - Allowuserstoregister/login/logout.
+ - Enableusers to schedule email noti cations.
+ - Setupacronjobtosendemailsatthescheduledtime.
+ - Manageemailsendingstatus andretries for failed attempts
+
+ The system will:
+ - Allowuserstoregister/login/logout.
+ - Enableusers to schedule email noti cations.
+ - Setupacronjobtosendemailsatthescheduledtime.
+ - Manageemailsendingstatus andretries for failed attempts.
+
+ Requirements:
+ 1. User Authentication:
+ - Implement user registration and login functionality
+ using sessions.
+ - Onlylogged-in users can schedule email noti cations.
+ - Use OOP for user management(e.g.,Userclass with
+ methods like register(), login(), logout()).
+
+ 2. Email Scheduling:
+ - Userscanscheduleanemailbyentering:
+ - Emailrecipient.
+ - Subject andbodyoftheemail.
+ - Dateandtimeforsending.
+ - Validate input (e.g., correct email format, future date
+ for sending).
+ - Storethescheduled emails in the database with the
+ status (pending, sent, or failed).
+ - UseOOPforemailmanagement(e.g., Email class with
+ methods like scheduleEmail(), sendEmail()).
+
+ 3. Cron Job:
+ - Write a script that will be triggered by a cron job.
+ This script will:
+- Check the database for any emails marked as
+ pending where the scheduled time has passed.
+ - Send the email using SMTP or an
+ external email service like mailtrap etc.
+ - Update the email status to sent or failed in the
+ database
+ - Implementretries for failed email attempts (e.g., retry
+ 3 times before marking as failed).
+
+ 4. Database Design:
+ - Tables: users, scheduled_emails
+ - Fields in scheduled_emails: recipient_email, subject,
+ body, scheduled_time, status, attempts.
+
+ 5. CodeStructure:
+ - FollowOOPprinciples and create classes such as:
+ - User:for managing user authentication.
+ - Email: for managing email scheduling and
+ sending.
+ - Organize the project using the MVC structure:
+ - models/: contains the class de nitions.
+ - controllers/: processes user input and handles
+ logic.
+ - views/: handles the presentation layer (e.g., HTML
+ forms).
+ - con g/:forcon gurationsettings like database
+ connection.
+ - cron/: contains the cron job script for checking
+ and sending scheduled emails.
+
+ 6. Cron Job Setup:
+ - The cron job should run every minute(oraspreferred)
+ to check the database for pending emails.
+
+ 7. Additional Requirements:
+ - Propererror handling, especially for email sending
+ failures.
+ - Form validation for all user inputs.
+- Use sessions forlogin/logout functionality.
+ - Clear, well-organized file structure.
+
+ Important Criteria:
+ - Effective use of OOP principles and clean code structure.
+ - Implementation and scheduling of cron jobs for email
+ sending.
+ - Error handling and retry mechanism for failed email sends.
+ - Form validation and database interaction.
+ - Clear and concise documentation on setting up and running
+ the project
