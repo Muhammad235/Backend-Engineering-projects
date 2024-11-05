@@ -6,6 +6,7 @@ This repository provides a curated collection of tasks, challenges, and projects
 - [Task 2: News Aggregator API](#task-2-news-aggregator-api)
 - [Task 3: Automated Email Notification System with Cron Jobs](#task-3-automated-email-notification-system-with-cron-jobs)
 - [Task 4: Travel Agency API](#task-4-travel-agency-api)
+- [Task 5: URL Shortening Service](#task-5-url-shortening-service)
 
 ---
 
@@ -142,3 +143,34 @@ Develop a RESTful API for managing travels and tours. Users can browse public tr
 3. **Note**
    - Use UUIDs as primary keys if possible.
    - Use integer values for tour prices (e.g., 99900 for €999.00).
+
+
+
+## Task 5: URL Shortening Service
+
+### Objective 
+Build a URL Shortener API that helps shorten long URLs.
+
+### Requirements
+1. **Models**
+    - **Url**
+      - Fields: `ID`, `original_url`, `short_url`, `created_at`, `usage_count`
+2. **Basic Endpoint**
+    - **POST** `/shorten`
+        - Request body
+        ```
+        {
+          "originalUrl": "<longUrl>"
+        }
+        ```
+        - Response body
+        ```
+        {
+          "shortUrl": "<shortUrl>"
+        }
+        ```
+    - **GET** `/shorten/short_url`
+      - Gets the base url and then redirects to the base url
+    
+    - **GET** `/stats/short_url
+      - Returns usage statistics for a given shortened URL (e.g., number of times accessed).
